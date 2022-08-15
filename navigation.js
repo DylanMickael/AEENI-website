@@ -1,6 +1,6 @@
 var navigation = document.createElement('nav');
 var navul = document.createElement('ul');
-var tabnav = ['Accueil','Partenaires','Clubs','Organigramme'];
+var tabnav = ['Accueil','Partenaires','Activités','membres'];
 var tabLength = tabnav.length;
 
 for(var i = 0; i < tabLength; i++){

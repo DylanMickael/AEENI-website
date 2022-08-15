@@ -1,14 +1,93 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html id="index">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AEENI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+	<title>AEENI-accueil</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <script type="text/javascript" src="navigation.js"></script>
 </head>
 <body>
-    <script src="navigation.js"></script>
+    <script type="text/javascript" src="header.js"></script>
+   <h1 id="titre"></h1>
+   <script type="text/javascript" src="animateTitle.js"></script>
 </body>
+<article id="main">
+   <div style="text-align: center;">
+   <h1 class="article">Actualités</h1>
+   <div class="actu" id="actu1">
+        <img style="width: 1000px;position: relative;right: 25%;" src="image/club3.png">
+        <div class="slideText"><h3 class="titreactu">Actualités sur les clubs de<br> l'ENI</h3><p class="suite">L'équipe de basket<br>part pour Antananarivo,<br>participer au SMATCHIN</p></div>
+   </div>
+   <div class="actu" id="actu2">
+       <img style="width: 500px;" src="image/dev.jpg">
+        <div class="slideText"><h3 class="titreactu">Compétitions organisés par<br>l'AEENI</h3><p class="suite">L'AEENI lance la première<br>édition de la compétition <br>DEVHUNT </p></div>
+   </div>
+   <div class="actu" id="actu3">
+       <img style="position: relative;right: 100%;"  src="image/rnc2.jpg">
+       <div class="slideText"><h3 class="titreactu">Evènemets organisés avec les partenaires</h3><p class="suite">En collaboration avec RELIA,<br>l'AEENI a pu organiser le<br>Rising Newbies Contest<br>éditions 2022<p></div>
+   </div>
+   <script type="text/javascript" src="clubSlide.js"></script>
+   <div id="apropos">
+           <h1 class="article" style="color: white;">Parcours</h1>
+           <img id="eni" src="image/ENI.jpg">
+           <p class="present" >L'AEENI est l'association des étudiants de la préstigieuse école nationale d'informatique<br>situé à Fianarantsoa et Tuléar.</p>
+           <img id="imageclub" src="image/chorale.JPG">
+           <p class="present" style="margin-top: 10%;">Au cours des années, l'association a eu le temps de se développer<br> et compte aujourd'hui plusieurs clubs à son actif tel que C2E ou encore<br>le club de dance.</p>
+           <img id="competimage" src="image/cadeau.jpg">
+           <p class="present" style="margin-top: 15%;">Grâce à ses nombreux exploits, l'AEENI a gagné de plus en plus en<br>visibilité et peut aujourd'hui compter sur l'aide de ses partenaires<br>dans le cadre de ses activités.</p>
+           <img id="futur" src="image/compet.jpg">
+           <p class="present" style="margin-top: 13%">Actuellement, l'AEENI fait la fierté de son établissement<br>et elle pousse chaque élève à donner le maximum de lui-même <br>à l'aide des compétitions qu'elle organise.</p>
+           <img id="fierte" src="image/victoire.jpg">
+           <p class="present" style="margin-top: 15%;">L'association compte aujourd'hui dans ces membres, l'élite nationale;<br> des étudiants autant déterminer que fier d'appartenir à l'AEENI.</p>
+    </div>
+    <div style="clear: both; text-align: left;padding-bottom: 10px;">
+            <img class="ad" src="image/smatchin2.png">
+            <img class="ad" style="margin-left: -22%;right: 6px;" src="image/Mug1.png">
+            <img class="ad" style="margin-left: -22%;right: 12px; " src="image/Mug2.png">
+            <img class="ad" style="margin-left: -22%;right: 18px;"  src="image/teehs.jpg">
+            <img class="ad" style="margin-left: -22%;right: 24px;"  src="image/cup.jpg">
+            <p id="pub">Pourquoi coder alors que vous n'êtes carrément pas dans votre aise?<br>Passez commande sur notre page facebook et recevez nos tee-shirts et<br> nos mugs qui rendront votre experience plus agréable:<br><br><a href="" target="blank" title="Lien vers facebook" id="bouton">Passer une commande</a></p>
+    </div>
+</article>
+    <script type="text/javascript" src="ad.js"></script>
+    <footer style="clear: both;">
+    <p id="stylefoot">"La pépinière des élites informaticiennes Malagasy"</p>
+    <div style="display: inline-block;">
+        <h3 class="foottitle">Contacts de l'AEENI</h3>
+        <table>
+        <tr>
+            <td><p><img src="image/facebook.png" style="width: 17px;"> <a href='https://mobile.facebook.com/groups/162416697294083?group_view_referrer=search' class="link" target="blank" title="Lien vers facebook">AEENI 2022</a></p></td>
+        <td>
+            <p><img src="image/gmail.png"> <a href="mailto:a.etudiant.eni@gmail.com" class="link" target="blank" title="Lien Email">a.etudiant.eni@gmail.com</a></p>
+        </td>
+        <td>
+            <p>📞<span style="color: rgb(250,185,120) ;">034 90 784 45</span></p>
+        </td><
+    </tr>
+    </table>
+    <div style="text-align: center">
+    <table style="margin-left: 9%;">
+    <h3 class="foottitle">Partenaires et clubs membres</h3>
+    	<tr>
+            <td><a target="blank" title="Lien vers un site web" href="https://m.univ-fianar.mg/?page_id=472"><img class="logo" src="image/logoENI.png"></a></td>
+    		<td><a target="blank" title="Lien vers un site web" href="https://arrato.mg"><img class="logo" src="image/arato.jpg"></a></td>
+    		<td><a target="blank" title="Lien vers facebook" href="https://m.facebook.com/Kalybot/"><img class="logo" src="image/Kaly.png"></a></td>
+    		<td><a target="blank" title="Lien vers fecebook" href="https://m.facebook.com/mahefa.numeric/"><img class="logo" src="image/mahef.png"></a></td>
+    		<td><a target="blank" title="Lien vers un site web" href="https://mg.linkedin.com>in>ng-academy"><img class="logo" src="image/NGA.png"></a></td>
+    		<td><a target="blank" title="Lien vers facebook" href="https://m.facebook.com/wecours-acceuil"><img class="logo" src="image/wecours.png"></a></td>
+            <td><a target="blank" title="Lien vers un site web" href="https://www.akata-goavana.com"><img class="logo" src="image/akata.png"></a></td>
+    	</tr>
+    	<tr>
+            <td></td>
+    	    <td><img class="logo" src="image/c2e.png"></td>
+    	    <td><img class="logo" src="image/c3lf.jpg"></td>
+    	    <td><img class="logo" src="image/c4m.jpg"></td>
+    	    <td><img class="logo" src="image/cyber.jpg"></td>
+    	</tr>    
+    </table>
+    </div>
+    </footer>
+</body>
+</html>
 </html>
