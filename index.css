@@ -36,7 +36,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%;
+    padding: 1.5rem 0;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -718,3 +718,4 @@ footer {
         font-size: 2.5rem;
     }
 }
+
