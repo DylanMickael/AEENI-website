@@ -24,7 +24,7 @@ L'AEENI est l'association regroupant les étudiants en informatique de l'École 
 - **Font Awesome 6.4** - Iconographie
 - **Google Fonts** - Typographie premium (Montserrat, Poppins, Space Mono)
 
-### Palette Couleurs (2024)
+### Palette Couleurs (2025)
 - **Grenat Profond** : `#a41e34` - Couleur principale
 - **Orange Chaud** : `#ff7a3d` - Accent dynamique
 - **Arrière-plan Sombre** : `#4a1422` - Héro section
@@ -71,7 +71,7 @@ Accueil dynamique avec animations parallaxe et floating cards presentant Innovat
 
 ### Actualités
 Grille Bento showcasing les projets en cours :
-- 🚀 Compétition DEVHUNT 2024
+- 🚀 Compétition DEVHUNT 2025
 - 🏀 Tournoi Basketball SMATCHIN
 - ⭐ Rising Newbies Contest
 
@@ -189,4 +189,4 @@ Tous droits réservés.
 **Dernière mise à jour** : 2025  
 **Repository** : [DylanMickael/AEENI-website](https://github.com/DylanMickael/AEENI-website)
 
-> *De 2021 à 2024 : L'évolution d'un développeur passionné* 🚀
+> *De 2021 à 2025 : L'évolution d'un développeur passionné* 🚀
