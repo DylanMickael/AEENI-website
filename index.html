@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         * {
@@ -19,7 +18,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            color: #333;
+            color: #1a1a2e;
             line-height: 1.6;
             overflow-x: hidden;
             background: #fff;
@@ -27,7 +26,8 @@
 
         h1, h2, h3, .logo {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-weight: 900;
+            letter-spacing: -1px;
         }
 
         /* Navigation */
@@ -53,7 +53,7 @@
 
         .logo {
             font-size: 2rem;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -82,7 +82,7 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             transition: width 0.3s;
         }
@@ -91,7 +91,7 @@
             width: 100%;
         }
 
-        /* Hero Section - 3D */
+        /* ===== HERO SECTION - EXTRAORDINARY ===== */
         .hero {
             margin-top: 70px;
             min-height: 100vh;
@@ -100,108 +100,70 @@
             overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            padding: 3rem 5%;
         }
 
-        #canvas-3d {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Animated Background Elements */
-        .hero-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-        }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
-            top: -10%;
-            right: -5%;
-            animation: float 15s infinite ease-in-out;
-        }
-
-        .orb-2 {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(118, 75, 162, 0.6), transparent);
-            bottom: -5%;
-            left: 5%;
-            animation: float 18s infinite ease-in-out 2s;
-        }
-
-        .orb-3 {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(147, 112, 219, 0.5), transparent);
-            top: 30%;
-            left: -10%;
-            animation: float 20s infinite ease-in-out 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(100px, -100px) scale(1.1); }
-            66% { transform: translate(-50px, 50px) scale(0.9); }
-        }
-
-        /* Hero Content */
         .hero-content {
-            position: relative;
+            flex: 1;
             z-index: 10;
-            text-align: center;
-            max-width: 900px;
-            color: white;
-            animation: fadeInUp 1s ease;
+            max-width: 600px;
         }
 
         .hero-title {
             font-size: 5.5rem;
             font-weight: 900;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            line-height: 1.1;
-            text-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-            animation: slideInDown 1s ease;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+            color: white;
+            text-shadow: 0 0 40px rgba(102, 126, 234, 0.4);
+            animation: titlePulse 2s ease-in-out infinite;
         }
 
-        .hero-title span {
-            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .hero-title-word {
+            display: inline-block;
+            margin-right: 0.2em;
+        }
+
+        .hero-title-word:nth-child(1) {
+            animation: bounce 0.6s ease infinite;
+        }
+
+        .hero-title-word:nth-child(2) {
+            animation: bounce 0.6s ease 0.1s infinite;
+        }
+
+        .hero-title-word:nth-child(3) {
+            animation: bounce 0.6s ease 0.2s infinite;
+        }
+
+        .hero-title-word:nth-child(4) {
+            color: #667eea;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 300;
             letter-spacing: 1px;
-            animation: slideInUp 1s ease 0.2s both;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 2rem;
-            justify-content: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            animation: slideInUp 1s ease 0.4s both;
         }
 
         .btn {
@@ -211,7 +173,7 @@
             font-size: 1.1rem;
             border: none;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-decoration: none;
             display: inline-block;
             font-family: 'Montserrat', sans-serif;
@@ -227,25 +189,9 @@
             box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s;
-            z-index: -1;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
         .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.6);
         }
 
         .btn-secondary {
@@ -257,95 +203,180 @@
 
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-8px);
         }
 
-        @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Hero Illustration */
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* SVG Illustration */
-        .hero-illustration {
+        .floating-card {
             position: absolute;
-            right: 5%;
-            bottom: 0;
-            width: 400px;
-            opacity: 0.15;
-            animation: float 10s infinite ease-in-out;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
-        /* Section Container */
+        .card-1 {
+            width: 250px;
+            animation: float 6s ease-in-out infinite;
+            top: 20px;
+            right: 0;
+        }
+
+        .card-2 {
+            width: 200px;
+            animation: float 7s ease-in-out infinite 0.5s;
+            bottom: 50px;
+            left: 50px;
+        }
+
+        .card-3 {
+            width: 220px;
+            animation: float 8s ease-in-out infinite 1s;
+            top: 150px;
+            left: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateZ(0deg); }
+            25% { transform: translateY(-30px) rotateZ(2deg); }
+            50% { transform: translateY(0) rotateZ(0deg); }
+            75% { transform: translateY(-20px) rotateZ(-2deg); }
+        }
+
+        .card-content {
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #667eea;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Decorative Elements */
+        .hero-decoration {
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .geo-shape {
+            position: absolute;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            top: 10%;
+            right: 5%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            border-radius: 20%;
+            bottom: 10%;
+            left: 10%;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sections */
         .section {
             padding: 7rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-family: 'Space Mono', monospace;
+            color: #667eea;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
             color: #1a1a2e;
-            letter-spacing: -1px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #667eea;
-            margin-bottom: 3rem;
-            font-weight: 600;
-            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 5px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             margin: 1.5rem auto 0;
             border-radius: 10px;
         }
 
-        /* News Section */
-        .news-grid {
+        /* Bento Grid News */
+        .news-bento {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
+        .news-card-large {
+            grid-column: span 2;
+        }
+
         .news-card {
-            background: white;
-            border-radius: 20px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.4s;
             cursor: pointer;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
         }
 
         .news-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15);
+            transform: translateY(-15px) scale(1.02);
+            border-color: #667eea;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
         }
 
         .news-card img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
         }
 
@@ -354,10 +385,9 @@
         }
 
         .news-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
             color: #1a1a2e;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .news-card p {
@@ -366,87 +396,140 @@
             line-height: 1.8;
         }
 
+        .news-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 1rem;
+            font-weight: 700;
+        }
+
         /* Journey Section */
         .journey-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8e5f5 100%);
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8e5f5 100%);
         }
 
-        .journey-item {
+        .journey-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 300px 1fr;
             gap: 4rem;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
             align-items: center;
+            position: relative;
         }
 
-        .journey-item:nth-child(even) {
-            grid-template-columns: 1fr 1fr;
+        .timeline-item:nth-child(even) {
+            grid-template-columns: 1fr 300px;
             direction: rtl;
         }
 
-        .journey-item:nth-child(even) > * {
+        .timeline-item:nth-child(even) > * {
             direction: ltr;
         }
 
-        .journey-item img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s;
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 4px #e8e5f5;
         }
 
-        .journey-item img:hover {
-            transform: scale(1.05);
-        }
-
-        .journey-item-content h3 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .timeline-content h3 {
+            font-size: 2.2rem;
             color: #667eea;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
         }
 
-        .journey-item-content p {
-            font-size: 1.1rem;
+        .timeline-content p {
             color: #555;
-            line-height: 2;
+            font-size: 1.05rem;
+            line-height: 1.9;
         }
 
-        /* Merch Section */
-        .merch-section {
-            background: white;
+        .timeline-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 25px;
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
         }
 
-        .merch-container {
+        .timeline-image:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        /* Merch Showcase */
+        .merch-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .merch-images {
+        .merch-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
         }
 
-        .merch-images img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
+        .merch-item {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
         }
 
-        .merch-images img:hover {
-            transform: scale(1.08) rotate(2deg);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
+        .merch-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.4s;
+        }
+
+        .merch-item:hover img {
+            transform: scale(1.12) rotate(3deg);
+        }
+
+        .merch-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.3);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .merch-item:hover::after {
+            opacity: 1;
+        }
+
+        .merch-content {
+            flex: 1;
         }
 
         .merch-content h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
             color: #1a1a2e;
-            font-family: 'Montserrat', sans-serif;
         }
 
         .merch-content p {
@@ -456,37 +539,42 @@
             line-height: 1.9;
         }
 
-        /* Partners Section */
-        .partners-grid {
+        /* Partners Grid */
+        .partners-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
-            padding: 2rem 0;
         }
 
-        .partner-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2.5rem;
+        .partner-card {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
         }
 
-        .partner-logo:hover {
-            transform: scale(1.1) translateY(-5px);
+        .partner-card:hover {
+            transform: translateY(-20px) scale(1.05);
             border-color: #667eea;
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
         }
 
-        .partner-logo img {
+        .partner-card img {
             max-width: 100%;
             max-height: 80px;
             object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .partner-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #667eea;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
         /* Footer */
@@ -519,20 +607,9 @@
         }
 
         .footer-contact {
-            color: #bbb;
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-        }
-
-        .footer-contact a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-contact a:hover {
-            color: white;
         }
 
         .footer-contact-item {
@@ -546,58 +623,57 @@
             font-size: 1.2rem;
         }
 
+        .footer-contact-item a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-contact-item a:hover {
+            color: white;
+        }
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
             text-align: center;
             color: #999;
-            font-size: 0.95rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 3rem 2rem;
+            }
+
             .hero-title {
-                font-size: 3.5rem;
+                font-size: 3rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.3rem;
+            .hero-visual {
+                height: 400px;
+                margin-top: 2rem;
             }
 
-            .hero-buttons {
-                gap: 1rem;
+            .news-bento {
+                grid-template-columns: 1fr;
             }
 
-            .btn {
-                padding: 1rem 2rem;
-                font-size: 0.95rem;
+            .news-card-large {
+                grid-column: span 1;
             }
 
-            .nav-links {
-                gap: 1.5rem;
-                font-size: 0.9rem;
+            .timeline-item, .timeline-item:nth-child(even) {
+                grid-template-columns: 1fr;
             }
 
-            .journey-item {
-                grid-template-columns: 1fr !important;
-                direction: ltr !important;
-            }
-
-            .journey-item > * {
-                direction: ltr !important;
-            }
-
-            .merch-container {
+            .merch-showcase {
                 grid-template-columns: 1fr;
             }
 
             .section-title {
                 font-size: 2.5rem;
-            }
-
-            .hero-illustration {
-                width: 250px;
-                opacity: 0.08;
             }
         }
     </style>
@@ -611,6 +687,7 @@
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#actualites">Actualités</a></li>
                 <li><a href="#parcours">Parcours</a></li>
+                <li><a href="#merch">Merch</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -618,140 +695,162 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
-        <div class="hero-bg">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-
-        <svg class="hero-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3" />
-                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
-                </linearGradient>
-            </defs>
-            <circle cx="200" cy="200" r="150" fill="url(#grad)" stroke="#667eea" stroke-width="2" opacity="0.3"/>
-            <circle cx="200" cy="200" r="100" fill="none" stroke="#764ba2" stroke-width="1.5" opacity="0.2"/>
-            <circle cx="200" cy="200" r="50" fill="none" stroke="#667eea" stroke-width="1" opacity="0.4"/>
-            <g opacity="0.4">
-                <circle cx="150" cy="150" r="20" fill="#667eea"/>
-                <circle cx="250" cy="150" r="20" fill="#764ba2"/>
-                <circle cx="150" cy="250" r="20" fill="#764ba2"/>
-                <circle cx="250" cy="250" r="20" fill="#667eea"/>
-                <line x1="150" y1="150" x2="250" y2="150" stroke="#667eea" stroke-width="1"/>
-                <line x1="150" y1="150" x2="150" y2="250" stroke="#764ba2" stroke-width="1"/>
-            </g>
-        </svg>
-
         <div class="hero-content">
             <h1 class="hero-title">
-                Bienvenue à <span>l'AEENI</span>
+                <span class="hero-title-word">Bienvenue</span>
+                <span class="hero-title-word">à</span>
+                <span class="hero-title-word">l'</span>
+                <span class="hero-title-word">AEENI</span>
             </h1>
-            <p class="hero-subtitle">La pépinière des élites informaticiennes malgaches</p>
+            <p class="hero-subtitle">La pépinière des élites informaticiennes malgaches. Rejoignez une communauté d'innovateurs.</p>
             <div class="hero-buttons">
-                <a href="#actualites" class="btn btn-primary">Découvrez nos actualités</a>
-                <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+                <a href="#actualites" class="btn btn-primary">Découvrir</a>
+                <a href="#contact" class="btn btn-secondary">Contact</a>
             </div>
         </div>
 
-        <canvas id="canvas-3d"></canvas>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <div class="card-icon">💻</div>
+                <div class="card-title">Innovation</div>
+                <div class="card-content">Pousser les limites de la technologie</div>
+            </div>
+            <div class="floating-card card-2">
+                <div class="card-icon">🏆</div>
+                <div class="card-title">Excellence</div>
+                <div class="card-content">Compétitions de haut niveau</div>
+            </div>
+            <div class="floating-card card-3">
+                <div class="card-icon">🤝</div>
+                <div class="card-title">Communauté</div>
+                <div class="card-content">Ensemble vers le succès</div>
+            </div>
+        </div>
+
+        <div class="hero-decoration">
+            <div class="geo-shape shape-1"></div>
+            <div class="geo-shape shape-2"></div>
+        </div>
     </section>
 
     <!-- Actualités Section -->
     <section id="actualites" class="section">
-        <p class="section-subtitle">DERNIÈRES NOUVELLES</p>
-        <h2 class="section-title">Nos Actualités</h2>
-        <div class="news-grid">
-            <div class="news-card">
-                <img src="image/club3.png" alt="Équipe de basket">
+        <div class="section-header">
+            <p class="section-label">DERNIÈRES ACTUALITÉS</p>
+            <h2 class="section-title">Nos Projets en Cours</h2>
+        </div>
+        <div class="news-bento">
+            <div class="news-card news-card-large">
+                <img src="image/dev.jpg" alt="Compétition DEVHUNT">
                 <div class="news-card-content">
-                    <h3>Équipe de Basketball</h3>
-                    <p>Notre équipe de basketball part pour Antananarivo, prête à participer au SMATCHIN. Un défi excitant nous attend !</p>
+                    <h3>🚀 Compétition DEVHUNT - Édition 2024</h3>
+                    <p>L'AEENI lance sa compétition phare DEVHUNT, une aventure innovante pour tester vos compétences en développement face aux meilleurs talents. Inscriptions ouvertes !</p>
+                    <span class="news-tag">COMPÉTITION</span>
                 </div>
             </div>
 
             <div class="news-card">
-                <img src="image/dev.jpg" alt="Compétition DEVHUNT">
+                <img src="image/club3.png" alt="Équipe de basket">
                 <div class="news-card-content">
-                    <h3>Compétition DEVHUNT</h3>
-                    <p>L'AEENI lance la première édition de DEVHUNT, une compétition innovante pour tester vos compétences en développement.</p>
+                    <h3>🏀 Basketball</h3>
+                    <p>Notre équipe part conquérir le SMATCHIN à Antananarivo. Un défi nous attend !</p>
+                    <span class="news-tag">SPORTS</span>
                 </div>
             </div>
 
             <div class="news-card">
                 <img src="image/rnc2.jpg" alt="Rising Newbies Contest">
                 <div class="news-card-content">
-                    <h3>Rising Newbies Contest</h3>
-                    <p>En collaboration avec RELIA, nous avons organisé avec succès le Rising Newbies Contest édition 2022.</p>
+                    <h3>⭐ Rising Newbies Contest</h3>
+                    <p>En collaboration avec RELIA, un succès retentissant édition 2022.</p>
+                    <span class="news-tag">PARTENARIAT</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Parcours Section -->
+    <!-- Journey Section -->
     <section id="parcours" class="journey-section section">
-        <p class="section-subtitle">NOTRE HISTOIRE</p>
-        <h2 class="section-title">Notre Parcours</h2>
-
-        <div class="journey-item">
-            <img src="image/ENI.jpg" alt="École Nationale d'Informatique">
-            <div class="journey-item-content">
-                <h3>Une École Prestigieuse</h3>
-                <p>L'AEENI est l'association des étudiants de la prestigieuse École Nationale d'Informatique, avec des campus à Fianarantsoa et Tuléar. Nous rassemblons les meilleurs talents informatiques de Madagascar.</p>
-            </div>
+        <div class="section-header">
+            <p class="section-label">NOTRE ÉVOLUTION</p>
+            <h2 class="section-title">Notre Parcours Extraordinaire</h2>
         </div>
 
-        <div class="journey-item">
-            <img src="image/chorale.JPG" alt="Clubs de l'AEENI">
-            <div class="journey-item-content">
-                <h3>Des Clubs Diversifiés</h3>
-                <p>Au fil des années, l'association s'est développée avec plusieurs clubs à son actif : le club C2E, le club de danse, et bien d'autres. Chacun trouvant sa place pour s'épanouir.</p>
+        <div class="journey-timeline">
+            <div class="timeline-item">
+                <img src="image/ENI.jpg" alt="ENI" class="timeline-image">
+                <div class="timeline-content">
+                    <h3>Une École Prestigieuse</h3>
+                    <p>L'AEENI réunit les talents de la prestigieuse École Nationale d'Informatique. Une pépinière d'excellence avec des campus à Fianarantsoa et Tuléar.</p>
+                </div>
+                <div class="timeline-dot"></div>
             </div>
-        </div>
 
-        <div class="journey-item">
-            <img src="image/cadeau.jpg" alt="Partenaires">
-            <div class="journey-item-content">
-                <h3>Des Partenaires de Confiance</h3>
-                <p>Grâce à nos nombreux exploits, l'AEENI a gagné en visibilité et peut aujourd'hui compter sur le soutien de partenaires prestigieux pour ses activités.</p>
+            <div class="timeline-item">
+                <img src="image/chorale.JPG" alt="Clubs" class="timeline-image">
+                <div class="timeline-content">
+                    <h3>Clubs Diversifiés</h3>
+                    <p>Danse, Tech, Arts... Une multitude de clubs où chacun trouve sa place pour s'épanouir et créer du lien.</p>
+                </div>
+                <div class="timeline-dot"></div>
             </div>
-        </div>
 
-        <div class="journey-item">
-            <img src="image/compet.jpg" alt="Compétitions">
-            <div class="journey-item-content">
-                <h3>L'Excellence en Compétition</h3>
-                <p>Actuellement, l'AEENI est la fierté de son établissement. Nous organisons des compétitions qui poussent chaque étudiant à donner le meilleur de lui-même.</p>
+            <div class="timeline-item">
+                <img src="image/cadeau.jpg" alt="Partenaires" class="timeline-image">
+                <div class="timeline-content">
+                    <h3>Partenariats Solides</h3>
+                    <p>Grâce à nos exploits, nous avons conquis le cœur des plus grands partenaires de Madagascar.</p>
+                </div>
+                <div class="timeline-dot"></div>
             </div>
-        </div>
 
-        <div class="journey-item">
-            <img src="image/victoire.jpg" alt="Membres AEENI">
-            <div class="journey-item-content">
-                <h3>L'Élite Nationale</h3>
-                <p>L'association compte aujourd'hui parmi ses membres l'élite nationale. Des étudiants déterminés et fiers d'appartenir à l'AEENI, prêts à transformer Madagascar.</p>
+            <div class="timeline-item">
+                <img src="image/compet.jpg" alt="Compétitions" class="timeline-image">
+                <div class="timeline-content">
+                    <h3>Compétitions Légendaires</h3>
+                    <p>Nous organisons des défis qui poussent chacun à dépasser ses limites et devenir le meilleur version de lui-même.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <img src="image/victoire.jpg" alt="Victoires" class="timeline-image">
+                <div class="timeline-content">
+                    <h3>L'Élite Nationale</h3>
+                    <p>L'AEENI, c'est aujourd'hui les champions, les innovateurs, les leaders de demain de Madagascar.</p>
+                </div>
+                <div class="timeline-dot"></div>
             </div>
         </div>
     </section>
 
     <!-- Merch Section -->
-    <section id="merch" class="merch-section section">
-        <p class="section-subtitle">EXCLUSIF</p>
-        <h2 class="section-title">Notre Merchandise</h2>
-        <div class="merch-container">
-            <div class="merch-images">
-                <img src="image/smatchin2.png" alt="Merch SMATCHIN">
-                <img src="image/Mug1.png" alt="Mug AEENI">
-                <img src="image/Mug2.png" alt="Mug AEENI">
-                <img src="image/teehs.jpg" alt="T-shirt AEENI">
+    <section id="merch" class="section">
+        <div class="section-header">
+            <p class="section-label">COLLECTION EXCLUSIVE</p>
+            <h2 class="section-title">Merchandise Officiel</h2>
+        </div>
+        <div class="merch-showcase">
+            <div class="merch-grid">
+                <div class="merch-item">
+                    <img src="image/smatchin2.png" alt="SMATCHIN">
+                </div>
+                <div class="merch-item">
+                    <img src="image/Mug1.png" alt="Mug">
+                </div>
+                <div class="merch-item">
+                    <img src="image/Mug2.png" alt="Mug">
+                </div>
+                <div class="merch-item">
+                    <img src="image/teehs.jpg" alt="T-shirt">
+                </div>
             </div>
             <div class="merch-content">
-                <h2>Supportez l'AEENI</h2>
-                <p>Nos t-shirts, mugs et accessoires sont conçus pour rendre votre expérience plus agréable tout en affichant votre fierté d'être associé à nos valeurs.</p>
-                <p>Pourquoi coder dans l'inconfort quand vous pouvez le faire avec nos produits exclusifs ? Passez votre commande dès maintenant !</p>
+                <h2>Affiche ta fierté AEENI</h2>
+                <p>Porter AEENI, c'est plus qu'un look. C'est affirmer que tu fais partie de l'élite informaticiennes de Madagascar.</p>
+                <p>Nos t-shirts premium et mugs haut de gamme sont conçus avec passion pour les passionnés.</p>
                 <a href="https://mobile.facebook.com/groups/162416697294083" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-facebook"></i> Passer une commande
+                    <i class="fab fa-facebook"></i> Commander
                 </a>
             </div>
         </div>
@@ -808,3 +907,4 @@
 
             <div class="footer-section">
                 <h3
+
