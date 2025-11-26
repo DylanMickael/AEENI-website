@@ -53,8 +53,9 @@ L'AEENI est l'association regroupant les étudiants en informatique de l'École 
 
 ```
 AEENI-website/
-├── index.css               # Fichier de styling
 ├── index.html              # Page principale
+├── index.css               # Fichier de styling
+├── main.js                 # Fichier de scripting
 ├── image/                  # Assets et images
 │   ├── dev.jpg
 │   ├── club3.png
