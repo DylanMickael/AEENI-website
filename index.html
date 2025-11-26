@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AEENI - Association des Étudiants ENI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -13,10 +18,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             color: #333;
             line-height: 1.6;
             overflow-x: hidden;
+            background: #fff;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
         }
 
         /* Navigation */
@@ -24,10 +35,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
         }
 
         nav {
@@ -41,163 +52,295 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: 2px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 900;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s;
         }
 
-        /* Hero Section */
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section - 3D */
         .hero {
             margin-top: 70px;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a0033 50%, #2d1b4e 100%);
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        #canvas-3d {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Animated Background Elements */
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.8), transparent);
+            top: -10%;
+            right: -5%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .orb-2 {
             width: 400px;
             height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: -100px;
-            right: -100px;
-            animation: float 6s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.6), transparent);
+            bottom: -5%;
+            left: 5%;
+            animation: float 18s infinite ease-in-out 2s;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            bottom: -80px;
-            left: -80px;
-            animation: float 8s ease-in-out infinite;
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(147, 112, 219, 0.5), transparent);
+            top: 30%;
+            left: -10%;
+            animation: float 20s infinite ease-in-out 4s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -100px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
         }
 
+        /* Hero Content */
         .hero-content {
-            z-index: 1;
-            max-width: 800px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            color: white;
+            animation: fadeInUp 1s ease;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-title {
+            font-size: 5.5rem;
+            font-weight: 900;
             margin-bottom: 1rem;
-            animation: slideDown 0.8s ease;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
+            animation: slideInDown 1s ease;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero-title span {
+            background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
             opacity: 0.95;
-            animation: slideUp 0.8s ease 0.2s both;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: slideInUp 1s ease 0.2s both;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease 0.4s both;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 1rem 2.5rem;
+        .btn {
+            padding: 1.3rem 3rem;
             border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
             text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin: 0.5rem;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* SVG Illustration */
+        .hero-illustration {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            width: 400px;
+            opacity: 0.15;
+            animation: float 10s infinite ease-in-out;
         }
 
         /* Section Container */
         .section {
-            padding: 6rem 5%;
+            padding: 7rem 5%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #667eea;
             margin-bottom: 3rem;
-            color: #333;
+            font-weight: 600;
+            letter-spacing: 2px;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 4px;
+            width: 80px;
+            height: 5px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 1rem auto 0;
+            margin: 1.5rem auto 0;
+            border-radius: 10px;
         }
 
         /* News Section */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
 
         .news-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
+            border: 1px solid rgba(102, 126, 234, 0.1);
         }
 
         .news-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15);
         }
 
         .news-card img {
@@ -207,56 +350,66 @@
         }
 
         .news-card-content {
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .news-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a2e;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .news-card p {
             color: #666;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.8;
         }
 
         /* Journey Section */
         .journey-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8e5f5 100%);
         }
 
         .journey-item {
-            display: flex;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
             align-items: center;
         }
 
         .journey-item:nth-child(even) {
-            flex-direction: row-reverse;
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .journey-item:nth-child(even) > * {
+            direction: ltr;
         }
 
         .journey-item img {
-            width: 40%;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
         }
 
-        .journey-item-content {
-            width: 60%;
+        .journey-item img:hover {
+            transform: scale(1.05);
         }
 
         .journey-item-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
             color: #667eea;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .journey-item-content p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #555;
-            line-height: 1.8;
+            line-height: 2;
         }
 
         /* Merch Section */
@@ -267,60 +420,46 @@
         .merch-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 4rem;
             align-items: center;
         }
 
         .merch-images {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .merch-images img {
             width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
         }
 
         .merch-images img:hover {
-            transform: scale(1.05);
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2);
         }
 
         .merch-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #333;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .merch-content p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #666;
             margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button-primary {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .cta-button-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            line-height: 1.9;
         }
 
         /* Partners Section */
         .partners-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 2rem;
             padding: 2rem 0;
         }
@@ -329,15 +468,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 2.5rem;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
         }
 
         .partner-logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.1) translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
         }
 
         .partner-logo img {
@@ -348,36 +491,38 @@
 
         /* Footer */
         footer {
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a0033 100%);
             color: white;
-            padding: 3rem 5%;
+            padding: 4rem 5% 2rem;
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer-section h3 {
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
         }
 
         .footer-section p {
             color: #bbb;
-            font-size: 0.95rem;
-            line-height: 1.8;
+            font-size: 1rem;
+            line-height: 1.9;
         }
 
         .footer-contact {
             color: #bbb;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .footer-contact a {
@@ -393,42 +538,53 @@
         .footer-contact-item {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
+        }
+
+        .footer-contact-item i {
+            color: #667eea;
+            font-size: 1.2rem;
         }
 
         .footer-bottom {
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 2rem;
             text-align: center;
             color: #999;
+            font-size: 0.95rem;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-title {
+                font-size: 3.5rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .hero-buttons {
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 1rem 2rem;
+                font-size: 0.95rem;
             }
 
             .nav-links {
-                gap: 1rem;
+                gap: 1.5rem;
                 font-size: 0.9rem;
             }
 
             .journey-item {
-                flex-direction: column !important;
-                gap: 2rem;
+                grid-template-columns: 1fr !important;
+                direction: ltr !important;
             }
 
-            .journey-item img {
-                width: 100%;
-            }
-
-            .journey-item-content {
-                width: 100%;
+            .journey-item > * {
+                direction: ltr !important;
             }
 
             .merch-container {
@@ -436,7 +592,12 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
+            }
+
+            .hero-illustration {
+                width: 250px;
+                opacity: 0.08;
             }
         }
     </style>
@@ -457,16 +618,49 @@
 
     <!-- Hero Section -->
     <section id="accueil" class="hero">
-        <div class="hero-content">
-            <h1>Bienvenue à l'AEENI</h1>
-            <p>La pépinière des élites informaticiennes malgaches</p>
-            <a href="#actualites" class="cta-button">Découvrez nos actualités</a>
-            <a href="#contact" class="cta-button">Nous contacter</a>
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
         </div>
+
+        <svg class="hero-illustration" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+                </linearGradient>
+            </defs>
+            <circle cx="200" cy="200" r="150" fill="url(#grad)" stroke="#667eea" stroke-width="2" opacity="0.3"/>
+            <circle cx="200" cy="200" r="100" fill="none" stroke="#764ba2" stroke-width="1.5" opacity="0.2"/>
+            <circle cx="200" cy="200" r="50" fill="none" stroke="#667eea" stroke-width="1" opacity="0.4"/>
+            <g opacity="0.4">
+                <circle cx="150" cy="150" r="20" fill="#667eea"/>
+                <circle cx="250" cy="150" r="20" fill="#764ba2"/>
+                <circle cx="150" cy="250" r="20" fill="#764ba2"/>
+                <circle cx="250" cy="250" r="20" fill="#667eea"/>
+                <line x1="150" y1="150" x2="250" y2="150" stroke="#667eea" stroke-width="1"/>
+                <line x1="150" y1="150" x2="150" y2="250" stroke="#764ba2" stroke-width="1"/>
+            </g>
+        </svg>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Bienvenue à <span>l'AEENI</span>
+            </h1>
+            <p class="hero-subtitle">La pépinière des élites informaticiennes malgaches</p>
+            <div class="hero-buttons">
+                <a href="#actualites" class="btn btn-primary">Découvrez nos actualités</a>
+                <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+            </div>
+        </div>
+
+        <canvas id="canvas-3d"></canvas>
     </section>
 
     <!-- Actualités Section -->
     <section id="actualites" class="section">
+        <p class="section-subtitle">DERNIÈRES NOUVELLES</p>
         <h2 class="section-title">Nos Actualités</h2>
         <div class="news-grid">
             <div class="news-card">
@@ -497,6 +691,7 @@
 
     <!-- Parcours Section -->
     <section id="parcours" class="journey-section section">
+        <p class="section-subtitle">NOTRE HISTOIRE</p>
         <h2 class="section-title">Notre Parcours</h2>
 
         <div class="journey-item">
@@ -542,6 +737,8 @@
 
     <!-- Merch Section -->
     <section id="merch" class="merch-section section">
+        <p class="section-subtitle">EXCLUSIF</p>
+        <h2 class="section-title">Notre Merchandise</h2>
         <div class="merch-container">
             <div class="merch-images">
                 <img src="image/smatchin2.png" alt="Merch SMATCHIN">
@@ -550,10 +747,10 @@
                 <img src="image/teehs.jpg" alt="T-shirt AEENI">
             </div>
             <div class="merch-content">
-                <h2>Notre Merchandise</h2>
-                <p>Supportez l'AEENI avec style ! Nos t-shirts, mugs et accessoires sont conçus pour rendre votre expérience plus agréable tout en affichant votre fierté d'être associé à nos valeurs.</p>
+                <h2>Supportez l'AEENI</h2>
+                <p>Nos t-shirts, mugs et accessoires sont conçus pour rendre votre expérience plus agréable tout en affichant votre fierté d'être associé à nos valeurs.</p>
                 <p>Pourquoi coder dans l'inconfort quand vous pouvez le faire avec nos produits exclusifs ? Passez votre commande dès maintenant !</p>
-                <a href="https://mobile.facebook.com/groups/162416697294083" target="_blank" class="cta-button-primary">
+                <a href="https://mobile.facebook.com/groups/162416697294083" target="_blank" class="btn btn-primary">
                     <i class="fab fa-facebook"></i> Passer une commande
                 </a>
             </div>
@@ -562,7 +759,8 @@
 
     <!-- Partners Section -->
     <section id="partners" class="section">
-        <h2 class="section-title">Nos Partenaires & Clubs</h2>
+        <p class="section-subtitle">NOS COLLABORATEURS</p>
+        <h2 class="section-title">Partenaires & Clubs</h2>
         <div class="partners-grid">
             <a href="https://m.univ-fianar.mg/?page_id=472" target="_blank" class="partner-logo">
                 <img src="image/logoENI.png" alt="ENI">
@@ -609,39 +807,4 @@
             </div>
 
             <div class="footer-section">
-                <h3>Contacts</h3>
-                <div class="footer-contact">
-                    <div class="footer-contact-item">
-                        <i class="fab fa-facebook"></i>
-                        <a href="https://mobile.facebook.com/groups/162416697294083" target="_blank">AEENI 2022</a>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:a.etudiant.eni@gmail.com">a.etudiant.eni@gmail.com</a>
-                    </div>
-                    <div class="footer-contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>034 90 784 45</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>Nos Clubs</h3>
-                <p>
-                    • C2E<br>
-                    • C3LF<br>
-                    • C4M<br>
-                    • Cyber Club<br>
-                    • Club de Danse
-                </p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 AEENI - Association des Étudiants ENI. Tous droits réservés.</p>
-        </div>
-    </footer>
-
-</body>
-</html>
+                <h3
